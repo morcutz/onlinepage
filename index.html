@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MORCUTZ | Barbería Urbana & Estilo Premium</title>
+    <meta name="description" content="No es solo un corte. Es tu carta de presentación. Reserva tu turno online en MORCUTZ en menos de 1 minuto. Barbería urbana, fades, perfilado de barba y estilo premium.">
+    
+    <!-- PWA & Favicon -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0d0d0d">
+    <link rel="icon" type="image/png" href="img/logo.jpeg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="hero-video-bg" autoplay loop muted playsinline poster="img/logo.jpeg"></video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="badge">Estilo & Precisión Urbana</span>
+            <h1 class="hero-title">No es solo un corte.<br><span class="text-gold">Es tu carta de presentación.</span></h1>
+            <a href="#reservas" class="btn btn-primary">RESERVAR TURNO AHORA</a>
+        </div>
+    </section>
+
+    <!-- Sistema de Reservas Modal / Section -->
+    <section id="reservas" class="section-padding container">
+        <h2 class="section-title">RESERVA TU <span class="text-gold">TURNO</span></h2>
+        <p class="section-subtitle">Completa tu reserva rápida en solo 3 pasos</p>
+        
+        <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem 1.25rem; text-align: center;">
+            <div id="booking-wizard">
+                <div style="display: flex; justify-content: space-around; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+                    <span id="step-1-indicator" class="badge" style="background: var(--accent-gold); color: #000;">1. Servicio</span>
+                    <span id="step-2-indicator" class="badge">2. Barbero & Hora</span>
+                    <span id="step-3-indicator" class="badge">3. Confirmación</span>
+                </div>
+
+                <!-- Step 1: Servicio -->
+                <div id="step-1" class="booking-step">
+                    <h3 style="margin-bottom: 1rem;">Selecciona tu servicio</h3>
+                    <div class="services-grid">
+                        <button class="service-card" onclick="selectService('Corte MORCUTZ', '$XX')">
+                            <div class="service-header">
+                                <span class="service-name">Corte MORCUTZ</span>
+                                <span class="service-price">$XX</span>
+                            </div>
+                            <div class="service-meta">⏱ 45 min</div>
+                            <p class="service-desc">Asesoramiento de visajismo, degradado fade a elección, lavado y peinado final.</p>
+                        </button>
+                        <button class="service-card" onclick="selectService('Full Experience (Corte + Peinado)', '$XX')">
+                            <div class="service-header">
+                                <span class="service-name">Full Experience</span>
+                                <span class="service-price">$XX</span>
+                            </div>
+                            <div class="service-meta">⏱ 60 min</div>
+                            <p class="service-desc">Corte MORCUTZ + Ritual spa de barba con toalla caliente y bebida de cortesía.</p>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Barbero & Fecha -->
+                <div id="step-2" class="booking-step" style="display: none;">
+                    <h3 style="margin-bottom: 1rem;">Selecciona Barbero y Horario</h3>
+                    <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.5rem;">
+                        <button class="btn btn-outline" onclick="selectBarber('Mora (FadeMaster)')">Tomás "Mora" (FadeMaster)</button>
+                        <button class="btn btn-outline" onclick="selectBarber('Lucas (Classic)')">Lucas (Classic)</button>
+                    </div>
+                    <input type="datetime-local" id="booking-time" style="background: var(--bg-card); color: #fff; border: 1px solid var(--border-color); padding: 0.8rem; border-radius: var(--radius-sm); font-family: inherit; margin-bottom: 1.5rem;">
+                    <br>
+                    <button class="btn btn-primary" onclick="goToStep(3)">Continuar a Confirmación</button>
+                </div>
+
+                <!-- Step 3: Confirmación -->
+                <div id="step-3" class="booking-step" style="display: none;">
+                    <h3 style="margin-bottom: 1rem;">Confirma tu Reserva</h3>
+                    <p id="booking-summary" style="color: var(--accent-gold); margin-bottom: 1.5rem; font-size: 1.1rem;"></p>
+                    <form onsubmit="confirmBooking(event)" style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin: 0 auto;">
+                        <input type="text" placeholder="Tu Nombre Completo" required style="padding: 0.8rem; background: var(--bg-card); border: 1px solid var(--border-color); color: #fff; border-radius: var(--radius-sm);">
+                        <input type="tel" placeholder="Tu Teléfono (WhatsApp)" required style="padding: 0.8rem; background: var(--bg-card); border: 1px solid var(--border-color); color: #fff; border-radius: var(--radius-sm);">
+                        <button type="submit" class="btn btn-primary">CONFIRMAR TURNO</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section-padding container">
+        <h2 class="section-title"><span class="text-gold">CONTACTO</span></h2>
+        
+        <div style="background: var(--bg-surface); border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--border-color); text-align: center;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">MORCUTZ</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Instagram: <span>@morcutz_</span></p>
+        </div>
+    </section>
+
+    <!-- Scripts necesarios para el funcionamiento de las reservas -->
+    <script src="js/main.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+</html>
