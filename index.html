@@ -41,7 +41,7 @@
             <div id="booking-wizard">
                 <div style="display: flex; justify-content: space-around; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
                     <span id="step-1-indicator" class="badge" style="background: var(--accent-gold); color: #000;">1. Servicio</span>
-                    <span id="step-2-indicator" class="badge">2. Barbero & Hora</span>
+                    <span id="step-2-indicator" class="badge">2. Hora</span>
                     <span id="step-3-indicator" class="badge">3. Confirmación</span>
                 </div>
 
@@ -54,7 +54,7 @@
                                 <span class="service-name">Corte MORCUTZ</span>
                                 <span class="service-price">$XX</span>
                             </div>
-                            <div class="service-meta">⏱ 45 min</div>
+                            <div class="service-meta">⏱ 40 min</div>
                             <p class="service-desc">Asesoramiento de visajismo, degradado fade a elección, lavado y peinado final.</p>
                         </button>
                         <button class="service-card" onclick="selectService('Full Experience (Corte + Peinado)', '$XX')">
@@ -63,21 +63,33 @@
                                 <span class="service-price">$XX</span>
                             </div>
                             <div class="service-meta">⏱ 60 min</div>
-                            <p class="service-desc">Corte MORCUTZ + Ritual spa de barba con toalla caliente y bebida de cortesía.</p>
+                            <p class="service-desc">Corte MORCUTZ + Muestra de peinado y bebida de cortesía.</p>
                         </button>
                     </div>
                 </div>
 
-                <!-- Step 2: Barbero & Fecha -->
+                <!-- Step 2: Fecha y Hora -->
                 <div id="step-2" class="booking-step" style="display: none;">
-                    <h3 style="margin-bottom: 1rem;">Selecciona Barbero y Horario</h3>
-                    <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.5rem;">
-                        <button class="btn btn-outline" onclick="selectBarber('Mora (FadeMaster)')">Tomás "Mora" (FadeMaster)</button>
-                        <button class="btn btn-outline" onclick="selectBarber('Lucas (Classic)')">Lucas (Classic)</button>
+                    <h3 style="margin-bottom: 1rem;">Elige el día y el horario</h3>
+    
+                    <div style="margin-bottom: 1.5rem;">
+                        <label for="booking-date" style="display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem;">Día del turno *</label>
+                        <input type="date" id="booking-date" required onchange="validateStep2()" style="background: var(--bg-card); color: #fff; border: 1px solid var(--border-color); padding: 0.8rem; border-radius: var(--radius-sm); font-family: inherit; width: 100%; max-width: 260px;">
                     </div>
-                    <input type="datetime-local" id="booking-time" style="background: var(--bg-card); color: #fff; border: 1px solid var(--border-color); padding: 0.8rem; border-radius: var(--radius-sm); font-family: inherit; margin-bottom: 1.5rem;">
-                    <br>
-                    <button class="btn btn-primary" onclick="goToStep(3)">Continuar a Confirmación</button>
+
+                    <div style="margin-bottom: 1.5rem;">
+                        <p style="margin-bottom: 0.75rem; color: var(--text-secondary); font-size: 0.9rem;">Horarios disponibles *</p>
+                        <div id="time-slots-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(95px, 1fr)); gap: 0.6rem; max-width: 420px; margin: 0 auto;">
+                        <!-- Los botones se generan desde booking.js -->
+                        </div>
+                    </div>
+
+                    <p id="step-2-error" style="color: #ef4444; font-size: 0.85rem; margin-bottom: 1rem; display: none;">Por favor, selecciona un día y un horario para continuar.</p>
+
+                    <div style="display: flex; gap: 0.75rem; justify-content: center;"> 
+                        <button type="button" class="btn" onclick="goToStep(1)" style="background: var(--bg-card); color: #fff; border: 1px solid var(--border-color);">Volver</button>
+                        <button type="button" id="btn-to-step-3" class="btn btn-primary" onclick="goToStep(3)" disabled style="opacity: 0.5; cursor: not-allowed;">Continuar a Confirmación</button>
+                    </div>
                 </div>
 
                 <!-- Step 3: Confirmación -->
@@ -86,7 +98,7 @@
                     <p id="booking-summary" style="color: var(--accent-gold); margin-bottom: 1.5rem; font-size: 1.1rem;"></p>
                     <form onsubmit="confirmBooking(event)" style="display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin: 0 auto;">
                         <input type="text" placeholder="Tu Nombre Completo" required style="padding: 0.8rem; background: var(--bg-card); border: 1px solid var(--border-color); color: #fff; border-radius: var(--radius-sm);">
-                        <input type="tel" placeholder="Tu Teléfono (WhatsApp)" required style="padding: 0.8rem; background: var(--bg-card); border: 1px solid var(--border-color); color: #fff; border-radius: var(--radius-sm);">
+                        <input type="email" placeholder="Tu mail" required style="padding: 0.8rem; background: var(--bg-card); border: 1px solid var(--border-color); color: #fff; border-radius: var(--radius-sm);">
                         <button type="submit" class="btn btn-primary">CONFIRMAR TURNO</button>
                     </form>
                 </div>
