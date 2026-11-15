@@ -163,7 +163,7 @@ function goToStep(stepNumber) {
     }
 
     document.querySelectorAll(".booking-step").forEach(step => step.style.display = "none");
-    document.getElementById(`step-${stepNumber}`).style.display = "block";
+    document.getElementById(`step-${stepNumber}`).style.display = stepNumber === 2 ? "grid" : "block";
 
     for (let i = 1; i <= 3; i++) {
         const indicator = document.getElementById(`step-${i}-indicator`);
