@@ -569,3 +569,157 @@ h1, h2, h3, h4 {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* --------------------------------------------------------------------------
+   14. BOOKING DATE & FIXED TIME SLOTS
+   -------------------------------------------------------------------------- */
+.booking-step-title {
+  margin-bottom: 1.5rem;
+}
+
+.barber-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.barber-option.selected {
+  color: #000;
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+.booking-date-panel {
+  max-width: 440px;
+  margin: 0 auto 2rem;
+  text-align: left;
+}
+
+.booking-date-panel label,
+.time-picker-heading h4 {
+  display: block;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 0.65rem;
+}
+
+.booking-date-panel input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font: inherit;
+  color-scheme: dark;
+}
+
+.booking-date-panel input:focus {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+.time-picker {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  text-align: left;
+}
+
+.time-picker-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.time-picker-heading h4 {
+  margin: 0;
+}
+
+#selected-time-label {
+  color: var(--accent-gold);
+  font-size: 0.8rem;
+}
+
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.time-period h5 {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.7rem;
+}
+
+.time-period-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.time-slot {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.65rem 0.8rem;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.time-slot:hover {
+  border-color: var(--accent-gold);
+  background: var(--bg-card-hover);
+}
+
+.time-slot.selected {
+  color: #000;
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.time-empty {
+  grid-column: 1 / -1;
+  padding: 1.25rem;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.booking-continue {
+  min-width: min(100%, 280px);
+}
+
+@media (max-width: 600px) {
+  .time-slots {
+    grid-template-columns: 1fr;
+  }
+
+  .time-period-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .time-picker-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .barber-options .btn {
+    width: 100%;
+  }
+}
