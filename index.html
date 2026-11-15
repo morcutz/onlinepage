@@ -68,16 +68,31 @@
                     </div>
                 </div>
 
-                <!-- Step 2: Barbero & Fecha -->
+                <!-- Step 2: Barbero, fecha y horarios fijos -->
                 <div id="step-2" class="booking-step" style="display: none;">
-                    <h3 style="margin-bottom: 1rem;">Selecciona Barbero y Horario</h3>
-                    <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.5rem;">
-                        <button class="btn btn-outline" onclick="selectBarber('Mora (FadeMaster)')">Tomás "Mora" (FadeMaster)</button>
-                        <button class="btn btn-outline" onclick="selectBarber('Lucas (Classic)')">Lucas (Classic)</button>
+                    <h3 class="booking-step-title">Seleccioná barbero, fecha y horario</h3>
+
+                    <div class="barber-options">
+                        <button type="button" class="btn btn-outline barber-option" onclick="selectBarber('Tomás \"Mora\" (FadeMaster)')">Tomás "Mora" (FadeMaster)</button>
+                        <button type="button" class="btn btn-outline barber-option" onclick="selectBarber('Lucas (Classic)')">Lucas (Classic)</button>
                     </div>
-                    <input type="datetime-local" id="booking-time" style="background: var(--bg-card); color: #fff; border: 1px solid var(--border-color); padding: 0.8rem; border-radius: var(--radius-sm); font-family: inherit; margin-bottom: 1.5rem;">
-                    <br>
-                    <button class="btn btn-primary" onclick="goToStep(3)">Continuar a Confirmación</button>
+
+                    <div class="booking-date-panel">
+                        <label for="booking-date">Elegí el día de tu turno</label>
+                        <input type="date" id="booking-date">
+                    </div>
+
+                    <div class="time-picker">
+                        <div class="time-picker-heading">
+                            <h4>Horarios disponibles</h4>
+                            <span id="selected-time-label">Primero seleccioná una fecha</span>
+                        </div>
+                        <div id="time-slots" class="time-slots">
+                            <p class="time-empty">Seleccioná una fecha para consultar los horarios.</p>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary booking-continue" onclick="goToStep(3)">Continuar a Confirmación</button>
                 </div>
 
                 <!-- Step 3: Confirmación -->
