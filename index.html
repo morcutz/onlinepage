@@ -68,31 +68,61 @@
                     </div>
                 </div>
 
-                <!-- Step 2: Barbero, fecha y horarios fijos -->
-                <div id="step-2" class="booking-step" style="display: none;">
-                    <h3 class="booking-step-title">Seleccioná barbero, fecha y horario</h3>
+                <!-- Step 2: Selector visual de fecha y horario -->
+                <div id="step-2" class="booking-step booking-step-two" style="display: none;">
+                    <div class="booking-main-panel">
+                        <div class="booking-date-header">
+                            <div>
+                                <h3>Seleccionar fecha y hora</h3>
+                                <p id="booking-month-label">Cargando calendario...</p>
+                            </div>
+                            <div class="calendar-navigation">
+                                <button type="button" id="calendar-prev" aria-label="Semana anterior">&#8249;</button>
+                                <button type="button" id="calendar-next" aria-label="Semana siguiente">&#8250;</button>
+                            </div>
+                        </div>
 
-                    <div class="barber-options">
-                        <button type="button" class="btn btn-outline barber-option" onclick="selectBarber('Tomás \"Mora\" (FadeMaster)')">Tomás "Mora" (FadeMaster)</button>
-                        <button type="button" class="btn btn-outline barber-option" onclick="selectBarber('Lucas (Classic)')">Lucas (Classic)</button>
-                    </div>
+                        <div id="calendar-days" class="calendar-days"></div>
 
-                    <div class="booking-date-panel">
-                        <label for="booking-date">Elegí el día de tu turno</label>
-                        <input type="date" id="booking-date">
-                    </div>
-
-                    <div class="time-picker">
+                        <div class="booking-times-divider"></div>
                         <div class="time-picker-heading">
                             <h4>Horarios disponibles</h4>
-                            <span id="selected-time-label">Primero seleccioná una fecha</span>
+                            <span id="selected-time-label">Seleccioná un día para ver los horarios</span>
                         </div>
                         <div id="time-slots" class="time-slots">
-                            <p class="time-empty">Seleccioná una fecha para consultar los horarios.</p>
+                            <p class="time-empty">Elegí una fecha para consultar los horarios.</p>
                         </div>
                     </div>
 
-                    <button type="button" class="btn btn-primary booking-continue" onclick="goToStep(3)">Continuar a Confirmación</button>
+                    <aside class="booking-order-panel">
+                        <h3>Tu reserva</h3>
+                        <div class="booking-order-service">
+                            <div>
+                                <strong id="order-service-name">Servicio seleccionado</strong>
+                                <span id="order-service-duration">Duración a confirmar</span>
+                            </div>
+                            <strong id="order-service-price">$XX</strong>
+                        </div>
+
+                        <div class="booking-employee">
+                            <span>Empleado</span>
+                            <div class="booking-employee-options">
+                                <button type="button" class="barber-option" onclick="selectBarber('Tomás \"Mora\" (FadeMaster)')">Tomás "Mora"</button>
+                                <button type="button" class="barber-option" onclick="selectBarber('Lucas (Classic)')">Lucas</button>
+                            </div>
+                        </div>
+
+                        <div class="booking-order-details">
+                            <p><span>Fecha</span><strong id="order-date">Sin seleccionar</strong></p>
+                            <p><span>Horario</span><strong id="order-time">Sin seleccionar</strong></p>
+                        </div>
+
+                        <div class="booking-order-total">
+                            <span>Total</span>
+                            <strong id="order-total">$XX</strong>
+                        </div>
+                        <button type="button" class="btn btn-primary booking-continue" onclick="goToStep(3)">Continuar</button>
+                    </aside>
                 </div>
 
                 <!-- Step 3: Confirmación -->
